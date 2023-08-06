@@ -7,7 +7,7 @@ include_once "Parqueadero.php";
 $cliente1 = new Cliente("Darickson", 123456789);
 $vehiculo1 = new Vehiculo($cliente1, "ABC123", "Toyota", "Rojo");
 $puestoParqueadero = new Parqueadero($cliente1, $vehiculo1, '10:00:00', '12:00:00');
-$puestoParqueadero->setAgregarPisoPuesto('Piso1',2);
+print_r($puestoParqueadero->setAgregarPisoPuesto());
 
 
 
@@ -18,4 +18,7 @@ foreach($allDates as $key){
     echo $key;
 }
 print_r($puestoParqueadero->getCosto());
+
+
+
 // print_r($puestoParqueadero->mostar());

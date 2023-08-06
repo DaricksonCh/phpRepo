@@ -26,20 +26,36 @@ class Parqueadero extends Vehiculo{
             $this->puestoAsignado = null;
         }
 
-        public function setAgregarPisoPuesto($piso, $puesto)
+        // public function setAgregarPisoPuesto($piso, $puesto)
+        // {
+        //     if ($puesto <= 0 || $puesto > 10) {
+        //         echo "El puesto $puesto no puede ser definido, debe ser un número entre 1 y 10";
+        //     } elseif (array_key_exists($piso, $this->pisos)) {
+        //         if (!in_array($puesto, $this->pisos[$piso])) {
+        //             $this->pisos[$piso][] = $puesto;
+        //             $this->pisoAsignado = $piso;
+        //             $this->puestoAsignado = $puesto;
+        //         } else {
+        //             echo "El puesto $puesto ya está ocupado en el piso $piso";
+        //         }
+        //     } else {
+        //         echo "El piso $piso que quieres asignar no existe";
+        //     }
+        // }
+        public function setAgregarPisoPuesto()
         {
-            if ($puesto <= 0 || $puesto > 10) {
-                echo "El puesto $puesto no puede ser definido, debe ser un número entre 1 y 10";
-            } elseif (array_key_exists($piso, $this->pisos)) {
-                if (!in_array($puesto, $this->pisos[$piso])) {
-                    $this->pisos[$piso][] = $puesto;
-                    $this->pisoAsignado = $piso;
+            $puesto = rand(1,10);
+            $pisoAle = array_rand($this->pisos);
+            if (array_key_exists($pisoAle, $this->pisos)) {
+                if (!in_array($puesto, $this->pisos[$pisoAle])) {
+                    $this->pisos[$pisoAle][] = $puesto;
+                    $this->pisoAsignado = $pisoAle;
                     $this->puestoAsignado = $puesto;
                 } else {
-                    echo "El puesto $puesto ya está ocupado en el piso $piso";
+                    echo "El puesto $puesto ya está ocupado en el piso $pisoAle";
                 }
             } else {
-                echo "El piso $piso que quieres asignar no existe";
+                echo "El piso $pisoAle que quieres asignar no existe";
             }
         }
 
