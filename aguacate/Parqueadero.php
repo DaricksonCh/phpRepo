@@ -3,28 +3,28 @@
 require_once "Vehiculo.php";
 require_once "Cliente.php";
 
-class Parqueadero extends Vehiculo{
+class Parqueadero{
 
+    public $vehiculo;
     public $pisos;
     public $strHoraEntrada;
     public $strHoraSalida;
     public $pisoAsignado; 
     public $puestoAsignado;
 
-        public function __construct(Cliente $cliente, Vehiculo $vehiculo, string $horaEntrada, string $horaSalida)
-        {
-            parent::__construct($cliente, $vehiculo->strPlaca,$vehiculo->strMarca,$vehiculo->strColor);
-            $this->strHoraEntrada=$horaEntrada;
-            $this->strHoraSalida=$horaSalida;
-            $this->pisos = [
-                'Piso1' => [],  
-                'Piso2' => [],
-                'Piso3' => [],
-                'Piso4' => [],
-            ];
-            $this->pisoAsignado = null; 
-            $this->puestoAsignado = null;
-        }
+    public function __construct(Vehiculo $vehiculo, string $horaEntrada, string $horaSalida) {
+        $this->vehiculo = $vehiculo;
+        $this->strHoraEntrada = $horaEntrada;
+        $this->strHoraSalida = $horaSalida;
+        $this->pisos = [
+            'Piso1' => [],  
+            'Piso2' => [],
+            'Piso3' => [],
+            'Piso4' => [],
+        ];
+        $this->pisoAsignado = null; 
+        $this->puestoAsignado = null;
+    }
 
         // public function setAgregarPisoPuesto($piso, $puesto)
         // {
@@ -81,14 +81,14 @@ class Parqueadero extends Vehiculo{
 
         public function getAllInformacion()
         {
-            $datosCliente = $this->getDatosPersonales(); 
-            $datosVehiculo = $this->getDatosPersonalesVehiculo();
+            // $datosCliente = $this->vehiculo->cliente->getDatosPersonales();
+            // $datosVehiculo = $this->vehiculo->getDatosPersonalesVehiculo();            
             $datosParking = ["
             <h2>Datos del Parqueadero</h2>
             <h3>Piso: $this->pisoAsignado</h3>
             <h4>Puesto: $this->puestoAsignado</h4>
                             "];
-            return array_merge($datosCliente, $datosVehiculo,$datosParking);
+            return array_merge($datosParking);
         }
         public function getCosto()
         {
@@ -101,8 +101,8 @@ class Parqueadero extends Vehiculo{
                 $horasEstacionado = ceil($tiempoEstacionado / 3600);
                 $tarifa = 2;
                 $valorApagar = $horasEstacionado * $tarifa;
-                $horaEntrada = date('H:i:s', $this->strHoraEntrada);
-                $horaSalida = date('H:i:s', $this->strHoraSalida);
+                $horaEntrada = date('H:i:s', strtotime($this->strHoraEntrada));
+                $horaSalida = date('H:i:s', strtotime($this->strHoraSalida));
                 $horasEstimadas = date('H:i:s', $tiempoEstacionado-3600);
                 return "<h4>Su hora de ingreso fue $horaEntrada y la hora de salida fue $horaSalida estuvo un total de $horasEstimadas hora/s. El valor total a pagar es $valorApagar$</h4>";
             }

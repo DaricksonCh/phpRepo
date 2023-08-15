@@ -1,31 +1,41 @@
 <?php
-
+require_once("conexcion.php");
 include_once "Cliente.php";
 
-class Vehiculo extends Cliente{
+$conexion = new Db();
+$pdo = $conexion->conexion();
 
-    public $strPlaca; 
+class Vehiculo {
+    public $cliente;
+    public $strPlaca;
     public $strMarca;
     public $strColor;
+    private $PDO;
 
-    public function __construct(Cliente $cliente, string $placa, string $marca, string $color)
-    {
-        parent::__construct($cliente->strNombre, $cliente->intCedula);
-
-        $this->strPlaca=$placa;
-        $this->strMarca=$marca;
-        $this->strColor=$color;
+    public function __construct(Cliente $cliente,$pdo, string $placa, string $marca, string $color) {
+        $this->PDO = $pdo;
+        $this->cliente = $cliente;
+        $this->strPlaca = $placa;
+        $this->strMarca = $marca;
+        $this->strColor = $color;
     }
-    public function getDatosPersonalesVehiculo()
-    {
-        // $datosCliente = $this->getDatosPersonales(); 
-        $datosVehiculo = ["
-            <h2>Datos del Vehiculo</h2>
-            <h3>Placa: $this->strPlaca</h3>
-            <h4>Marca: $this->strMarca</h4>
-            <h4>Color: $this->strColor</h4>
-        "];
 
-        return array_merge($datosVehiculo);
+    public function insertAuto()
+    {
+        $statement = $this->PDO->prepare("INSERT INTO autos (placa,marca,color) VALUES (:placa, :marca, :color)");
+		$statement->bindParam(":placa", $this->strPlaca);
+		$statement->bindParam(":marca", $this->strMarca);
+		$statement->bindParam(":color", $this->strColor);
+		$statement->execute();
     }
+}
+
+if(isset($_POST['btn'])) {
+    $placa = $_POST['placa'];
+    $marca = $_POST['marca'];
+    $color = $_POST['color'];
+
+    $vehiculo = new Vehiculo($cliente, $pdo, $placa, $marca, $color);
+    
+    $vehiculo->insertAuto();
 }

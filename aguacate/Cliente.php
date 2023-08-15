@@ -1,24 +1,42 @@
 <?php
+require_once("conexcion.php");
 
-class Cliente{
-    
-    public $strNombre;
-    public $intCedula;
+$conexion = new Db();
+$pdo = $conexion->conexion(); 
 
-    public function __construct(string $nombre, int $cedula)
-    {
-        $this->strNombre=$nombre;
-        $this->intCedula=$cedula;
-    }
+class Cliente {
+	public $strNombre;
+	public $intCedula;
+	private $PDO;
 
-    public function getDatosPersonales()
-    {
-        $datos = ["
-        <h2>Datos personales del Cliente</h2>
-        <h3>Nombre :$this->strNombre</h3>
-        <h4>Cedula :$this->intCedula</h4>
-        "];
-        return $datos;
-    }
+	public function __construct($pdo, int $cedula,string $nombre) {
+		$this->PDO = $pdo;
+		$this->intCedula = $cedula;
+		$this->strNombre = $nombre;
+	}
 
+	public function insertCliente() {
+		$statement = $this->PDO->prepare("INSERT INTO clientes (cedula, nombre) VALUES (:cedula, :nombre)");
+		$statement->bindParam(":cedula", $this->intCedula);
+		$statement->bindParam(":nombre", $this->strNombre);
+		$statement->execute();
+	}
 }
+
+if(isset($_POST['btn'])) {
+    $nombre = $_POST['nombre'];
+    $cedula = $_POST['cedula'];
+
+    $cliente = new Cliente($pdo, $cedula, $nombre);
+
+    $cliente->insertCliente();
+}
+
+
+
+?>
+
+
+
+
+
