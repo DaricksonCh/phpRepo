@@ -8,8 +8,8 @@ include_once "Cliente.php";
 include_once "Vehiculo.php";
 include_once "Parqueadero.php";
 
-$conexion = new Db(); // Crear instancia de la conexión a la base de datos
-$pdo = $conexion->conexion(); // Obtener el objeto PDO para la conexión
+$conexion = new Db(); 
+$pdo = $conexion->conexion(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,6 @@ $pdo = $conexion->conexion(); // Obtener el objeto PDO para la conexión
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <style>
 		.registration-container {
@@ -36,11 +35,11 @@ $pdo = $conexion->conexion(); // Obtener el objeto PDO para la conexión
 	}
 
 	.registration-form .form-group {
-	  margin-bottom: 20px; /* Agregar más espacio vertical entre los campos */
+	  margin-bottom: 20px;
 	}
 
 	.registration-form .btn {
-	  float: right; /* Alinear el botón "Registrar" al lado derecho */
+	  float: right;
 	}
   </style>
 </head>
