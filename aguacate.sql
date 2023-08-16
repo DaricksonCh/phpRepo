@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-08-2023 a las 18:38:28
+-- Tiempo de generación: 16-08-2023 a las 17:32:40
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.1.12
 
@@ -28,9 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `autos` (
-  `placa` varchar(10) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `placa` varchar(20) DEFAULT NULL,
   `marca` varchar(20) DEFAULT NULL,
-  `color` varchar(20) DEFAULT NULL
+  `color` varchar(20) DEFAULT NULL,
+  `idCliente` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -40,8 +42,23 @@ CREATE TABLE `autos` (
 --
 
 CREATE TABLE `clientes` (
+  `id` int(11) NOT NULL,
   `cedula` int(11) NOT NULL,
   `nombre` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `parqueo`
+--
+
+CREATE TABLE `parqueo` (
+  `idParqueadero` int(11) NOT NULL,
+  `idPuesto` int(11) DEFAULT NULL,
+  `idAuto` int(11) DEFAULT NULL,
+  `fechaIngreso` date DEFAULT curdate(),
+  `fechaSalida` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -129,10 +146,25 @@ INSERT INTO `puestos` (`id`, `puestos`, `piso`, `estado`) VALUES
 --
 
 --
+-- Indices de la tabla `autos`
+--
+ALTER TABLE `autos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `tener6` (`idCliente`);
+
+--
 -- Indices de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  ADD PRIMARY KEY (`cedula`);
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `parqueo`
+--
+ALTER TABLE `parqueo`
+  ADD PRIMARY KEY (`idParqueadero`),
+  ADD KEY `tener4` (`idPuesto`),
+  ADD KEY `tener5` (`idAuto`);
 
 --
 -- Indices de la tabla `pisos`
@@ -152,6 +184,24 @@ ALTER TABLE `puestos`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `autos`
+--
+ALTER TABLE `autos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT de la tabla `parqueo`
+--
+ALTER TABLE `parqueo`
+  MODIFY `idParqueadero` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `pisos`
 --
 ALTER TABLE `pisos`
@@ -166,6 +216,19 @@ ALTER TABLE `puestos`
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `autos`
+--
+ALTER TABLE `autos`
+  ADD CONSTRAINT `tener6` FOREIGN KEY (`idCliente`) REFERENCES `clientes` (`id`);
+
+--
+-- Filtros para la tabla `parqueo`
+--
+ALTER TABLE `parqueo`
+  ADD CONSTRAINT `tener4` FOREIGN KEY (`idPuesto`) REFERENCES `puestos` (`id`),
+  ADD CONSTRAINT `tener5` FOREIGN KEY (`idAuto`) REFERENCES `autos` (`id`);
 
 --
 -- Filtros para la tabla `puestos`
