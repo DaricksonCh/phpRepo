@@ -3,11 +3,10 @@ require_once("Cliente.php");
 require_once("Vehiculo.php");
 
 $tuObjetoCliente = new Cliente();
-$tuObjetoVehiculo = new Vehiculo(); // Utiliza la clase Vehiculo para obtener vehículos.
+$tuObjetoVehiculo = new Vehiculo(); 
 
 $clientes = $tuObjetoCliente->getClientes();
-$vehiculos = $tuObjetoVehiculo->getAutos(); // Asumiendo que tienes un método getVehiculos en la clase Vehiculo.
-
+$vehiculos = $tuObjetoVehiculo->getAutos(); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
