@@ -82,11 +82,21 @@ $pdo = $conexion->conexion();
 		  <label for="color">Color del Vehículo</label>
 		  <input type="text" class="form-control" id="color" placeholder="Ingrese el color" name="color">
 		</div>
-		<button type="submit" class="btn btn-primary" name="btn">Registrar</button>
+		<button type="submit" class="btn btn-primary" name="btn" onclick="Salida()">Registrar</button>
 	  </form>
 	</div>
   </div>
 </div>
+							<script type="text/javascript">
+                                function Salida() {
+                                    swal({
+                                        title: "Good job!",
+                                        text: "You clicked the button!",
+                                        icon: "success",
+                                        button: "Aww yiss!",
+                                        });
+                                }
+                            </script> 
 <?php
 if(isset($_POST['btn'])) {
 	$nombre = $_POST['nombre'];

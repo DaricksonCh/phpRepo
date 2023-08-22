@@ -2,11 +2,17 @@
 require_once("Cliente.php");
 require_once("Vehiculo.php");
 
+
 $tuObjetoCliente = new Cliente();
 $tuObjetoVehiculo = new Vehiculo(); 
 
 $clientes = $tuObjetoCliente->getClientes();
+<<<<<<< HEAD
 $vehiculos = $tuObjetoVehiculo->getAutos(); 
+=======
+$vehiculos = $tuObjetoVehiculo->getAutos();
+
+>>>>>>> 50d258e00e0c562f7b33b6e524100da38ab70797
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -203,6 +209,7 @@ for ($i = 0; $i < $maxCount; $i++) {
     </tbody>
   </table>
 </div>
+
 
 
 

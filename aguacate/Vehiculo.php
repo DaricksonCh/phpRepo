@@ -14,10 +14,10 @@ class Vehiculo extends Db{
 		$this->conexion = $this->conexion->conexion();
     }
 
-    public function insertAuto(Cliente $cliente,string $placa, string $marca, string $color)
+    public function insertAuto(Cliente $idCliente,string $placa, string $marca, string $color)
     {
         try{
-            $this->cliente = $cliente;
+            $this->cliente = $idCliente;
             $this->strPlaca = $placa;
             $this->strMarca = $marca;
             $this->strColor = $color;
