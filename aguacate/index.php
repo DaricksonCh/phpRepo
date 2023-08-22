@@ -42,7 +42,7 @@ a{
   <h1 class="text-center">Interfaz de Admin</h1>
   <div class="center-buttons">
     <a href="register.php"><button class="btn btn-primary">Registro de Cliente</button></a>
-    <a href="delete.php"><button class="btn btn-warning">Registrar Auto</button></a>
+    <a href="auto.php"><button class="btn btn-warning">Registrar Auto</button></a>
     <a href="verCliente.php"><button class="btn btn-info">Ver todos los Clientes</button></a>
     <a href="delete.php"><button class="btn btn-danger">Salida de Clientes</button></a>
   </div>

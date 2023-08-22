@@ -1,3 +1,14 @@
+<?php
+require_once("Cliente.php");
+require_once("Vehiculo.php");
+
+$tuObjetoCliente = new Cliente();
+$tuObjetoVehiculo = new Vehiculo(); // Utiliza la clase Vehiculo para obtener vehículos.
+
+$clientes = $tuObjetoCliente->getClientes();
+$vehiculos = $tuObjetoVehiculo->getAutos(); // Asumiendo que tienes un método getVehiculos en la clase Vehiculo.
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,13 +32,28 @@
       font-size: 18px;
       margin-bottom: 20px;
     }
+    a:hover{
+      color: #fff;
+    }
+    .btn-editar {
+    text-decoration: none;
+    color: #fff; 
+    background-color: #ffc107; 
+    padding: 5px 10px;
+    border-radius: 4px; 
+    }
+
+    .btn-editar:hover {
+      background-color: #ff9800; 
+    }
+
   </style>
 </head>
 <body>
 <div class="container">
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">
+          <a class="navbar-brand" href="index.php">
           <img src="aguacate.png" alt="" width="50" height="44" class="d-inline-block align-text-center">
           Aguacate
           </a>
@@ -37,7 +63,7 @@
 
 
 <div class="container mt-5">
-  <h2 class="text-center">Lista de Clientes</h2>
+  <h2 class="text-center">Lista de Clientes y Vehículos</h2>
   <h3>Piso 1</h3>
   <table class="table table-bordered">
     <thead>
@@ -52,23 +78,30 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>Juan Perez</td>
-        <td>12345678</td>
-        <td>ABC123</td>
-        <td>Ford</td>
-        <td>Azul</td>
-        <td class="text-center">
-          <button class="btn btn-warning"><i class="fas fa-edit"></i> Editar</button>
-        </td>
-        <td class="text-center">
-          <button class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button>
-        </td>
-      </tr>
+      <?php
+$maxCount = max(count($clientes), count($vehiculos)); // Encuentra la cantidad máxima de registros entre clientes y vehículos
+
+for ($i = 0; $i < $maxCount; $i++) {
+  echo '<tr>';
+  echo '<td>' . ($i + 1) . '</td>'; // Contador de fila
+  echo '<td>' . ($i < count($clientes) ? $clientes[$i]['nombre'] : '') . '</td>';
+  echo '<td>' . ($i < count($clientes) ? $clientes[$i]['cedula'] : '') . '</td>';
+  echo '<td>' . ($i < count($vehiculos) ? $vehiculos[$i]['placa'] : '') . '</td>';
+  echo '<td>' . ($i < count($vehiculos) ? $vehiculos[$i]['marca'] : '') . '</td>';
+  echo '<td>' . ($i < count($vehiculos) ? $vehiculos[$i]['color'] : '') . '</td>';
+  echo '<td class="text-center"><a class="btn-editar" href="editar.php?id=' . ($i + 1) . '"><i class="fas fa-edit"></i> Editar</a></td>';
+  echo '<td class="text-center"><button class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button></td>';
+  echo '</tr>';
+}
+
+      ?>
     </tbody>
   </table>
 </div>
+
+
+
+<a href=""></a>
 
 <div class="container mt-5">
   <h2 class="text-center">Lista de Clientes</h2>
@@ -87,12 +120,12 @@
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
-        <td>Juan Perez</td>
-        <td>12345678</td>
-        <td>ABC123</td>
-        <td>Ford</td>
-        <td>Azul</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
         <td class="text-center">
           <button class="btn btn-warning"><i class="fas fa-edit"></i> Editar</button>
         </td>
@@ -121,12 +154,12 @@
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
-        <td>Juan Perez</td>
-        <td>12345678</td>
-        <td>ABC123</td>
-        <td>Ford</td>
-        <td>Azul</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
         <td class="text-center">
           <button class="btn btn-warning"><i class="fas fa-edit"></i> Editar</button>
         </td>
@@ -155,12 +188,12 @@
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
-        <td>Juan Perez</td>
-        <td>12345678</td>
-        <td>ABC123</td>
-        <td>Ford</td>
-        <td>Azul</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
         <td class="text-center">
           <button class="btn btn-warning"><i class="fas fa-edit"></i> Editar</button>
         </td>

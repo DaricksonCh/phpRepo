@@ -1,12 +1,9 @@
 <?php
 /* relaciones */
-require_once("conexcion.php");
+require_once("conexion.php");
 require_once("Cliente.php");
 require_once("Vehiculo.php");
-/* includes */
-include_once "Cliente.php";
-include_once "Vehiculo.php";
-include_once "Parqueadero.php";
+
 
 $conexion = new Db(); 
 $pdo = $conexion->conexion(); 
@@ -45,14 +42,14 @@ $pdo = $conexion->conexion();
 </head>
 <body>
 <div class="container">
-	<nav class="navbar navbar-light bg-light">
-		<div class="container-fluid">
-		  <a class="navbar-brand" href="#">
-		  <img src="aguacate.png" alt="" width="50" height="44" class="d-inline-block align-text-center">
-		  Aguacate
-		  </a>
-		</div>
-	</nav>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.php">
+          <img src="aguacate.png" alt="" width="50" height="44" class="d-inline-block align-text-center">
+          Aguacate
+          </a>
+        </div>
+    </nav>
 </div>
 
 <div class="container mt-5">
@@ -90,12 +87,26 @@ $pdo = $conexion->conexion();
 	</div>
   </div>
 </div>
+<?php
+if(isset($_POST['btn'])) {
+	$nombre = $_POST['nombre'];
+	$cedula = $_POST['cedula'];
+	$placa = $_POST['placa'];
+	$marca = $_POST['marca'];
+	$color = $_POST['color'];
+	$cliente = new Cliente();
+	$vehiculo = new Vehiculo();
 
+	$cliente->insertCliente($cedula, $nombre);
+	$vehiculo->insertAuto($cliente,$placa, $marca, $color);
+}
+?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
 </html>
+
 
 
 
