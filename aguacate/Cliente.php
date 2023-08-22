@@ -27,15 +27,9 @@ class Cliente extends Db{
 				];
 	
 				$resInsert = $insert->execute($arrData);
-	
+				$idInsert = $this->conexion->lastInsertId();
 				$insert->closeCursor();
-	
-				if ($resInsert) {
-						echo "Cliente insertado correctamente.";
-				} else {
-						echo "Error al insertar el cliente.";
-				}
-	
+				return $idInsert;
 			} catch (Exception $e) {
 					echo "Error: " . $e->getMessage();
 			}
@@ -85,28 +79,22 @@ class Cliente extends Db{
 
 
 	public function deleteCliente(int $cedula)
-{
-    try {
-        $this->intCedula = $cedula;
-        $sql = "DELETE FROM clientes WHERE cedula = :cedula";
-        $delete = $this->conexion->prepare($sql);
+	{
+		try {
+			$this->intCedula = $cedula;
+			$sql = "DELETE FROM clientes WHERE cedula = :cedula";
+			$delete = $this->conexion->prepare($sql);
 
-        $arrData = [
-            ":cedula" => $this->intCedula
-        ];
+			$arrData = [
+				":cedula" => $this->intCedula
+			];
+			$del = $delete->execute($arrData);
 
-        // Ejecutar la consulta
-        $del = $delete->execute($arrData);
-
-        return $del;
-    } catch (Throwable $e) {
-        echo "Error: " . $e->getMessage();
-    }
-}
-
-	
-
-
+			return $del;
+		} catch (Throwable $e) {
+			echo "Error: " . $e->getMessage();
+		}
+	}
 
 }
 
