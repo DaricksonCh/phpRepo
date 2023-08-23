@@ -2,17 +2,11 @@
 require_once("Cliente.php");
 require_once("Vehiculo.php");
 
-
 $tuObjetoCliente = new Cliente();
 $tuObjetoVehiculo = new Vehiculo(); 
 
 $clientes = $tuObjetoCliente->getClientes();
-<<<<<<< HEAD
 $vehiculos = $tuObjetoVehiculo->getAutos(); 
-=======
-$vehiculos = $tuObjetoVehiculo->getAutos();
-
->>>>>>> 50d258e00e0c562f7b33b6e524100da38ab70797
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,21 +78,33 @@ $vehiculos = $tuObjetoVehiculo->getAutos();
     </thead>
     <tbody>
       <?php
-$maxCount = max(count($clientes), count($vehiculos)); // Encuentra la cantidad máxima de registros entre clientes y vehículos
+      $totalRecords = max(count($clientes), count($vehiculos));
 
-for ($i = 0; $i < $maxCount; $i++) {
-  echo '<tr>';
-  echo '<td>' . ($i + 1) . '</td>'; // Contador de fila
-  echo '<td>' . ($i < count($clientes) ? $clientes[$i]['nombre'] : '') . '</td>';
-  echo '<td>' . ($i < count($clientes) ? $clientes[$i]['cedula'] : '') . '</td>';
-  echo '<td>' . ($i < count($vehiculos) ? $vehiculos[$i]['placa'] : '') . '</td>';
-  echo '<td>' . ($i < count($vehiculos) ? $vehiculos[$i]['marca'] : '') . '</td>';
-  echo '<td>' . ($i < count($vehiculos) ? $vehiculos[$i]['color'] : '') . '</td>';
-  echo '<td class="text-center"><a class="btn-editar" href="editar.php?id=' . ($i + 1) . '"><i class="fas fa-edit"></i> Editar</a></td>';
-  echo '<td class="text-center"><button class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button></td>';
-  echo '</tr>';
-}
+      for ($i = 0; $i < $totalRecords; $i++) {
+        echo '<tr>';
+        echo '<td>' . ($i + 1) . '</td>'; // Contador de fila
+        if ($i < count($clientes)) {
+          echo '<td>' . $clientes[$i]['nombre'] . '</td>';
+          echo '<td>' . $clientes[$i]['cedula'] . '</td>';
+        } else {
+          echo '<td></td>';
+          echo '<td></td>';
+        }
 
+        if ($i < count($vehiculos)) {
+          echo '<td>' . $vehiculos[$i]['placa'] . '</td>';
+          echo '<td>' . $vehiculos[$i]['marca'] . '</td>';
+          echo '<td>' . $vehiculos[$i]['color'] . '</td>';
+        } else {
+          echo '<td></td>';
+          echo '<td></td>';
+          echo '<td></td>';
+        }
+
+        echo '<td class="text-center"><a class="btn-editar" href="editar.php?id=' . ($i + 1) . '"><i class="fas fa-edit"></i> Editar</a></td>';
+        echo '<td class="text-center"><button class="btn btn-danger"><i class="fas fa-trash"></i> Eliminar</button></td>';
+        echo '</tr>';
+      }
       ?>
     </tbody>
   </table>
@@ -209,7 +215,6 @@ for ($i = 0; $i < $maxCount; $i++) {
     </tbody>
   </table>
 </div>
-
 
 
 

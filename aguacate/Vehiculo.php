@@ -14,10 +14,8 @@ class Vehiculo extends Db{
 		$this->conexion = $this->conexion->conexion();
     }
 
-    public function insertAuto(Cliente $idCliente,string $placa, string $marca, string $color)
-    {
-        try{
-            $this->cliente = $idCliente;
+    public function insertAuto(Cliente $cliente, string $placa, string $marca, string $color) {
+        try {
             $this->strPlaca = $placa;
             $this->strMarca = $marca;
             $this->strColor = $color;
@@ -29,18 +27,14 @@ class Vehiculo extends Db{
                 ":placa" => $this->strPlaca,
                 ":marca" => $this->strMarca,
                 ":color" => $this->strColor,
-                ":idCliente" => $this->cliente->getId() 
+                ":idCliente" => $cliente->getId()
             ];
+            
             $resInsert = $insert->execute($arrData);
+            $idInsert = $this->conexion->lastInsertId();
             $insert->closeCursor();
-            if ($resInsert) {
-                echo "Vehiculo insertado correctamente.";
-            } else {
-                echo "Error al insertar el Vehiculo.";
-            }
-
-
-        }catch (Exception $e) {
+            return $idInsert;
+        } catch (Exception $e) {
             echo "Error: " . $e->getMessage();
         }
     }
@@ -57,6 +51,11 @@ class Vehiculo extends Db{
             echo "Error: " . $e->getMessage();
         }
     }
+
+    public function setCliente(Cliente $cliente) {
+        $this->cliente = $cliente;
+    }
+    
 
     public function updateVehiculo(string $placa, string $marca, string $color)
     {

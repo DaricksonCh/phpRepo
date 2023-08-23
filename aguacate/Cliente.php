@@ -7,41 +7,54 @@ class Cliente extends Db{
 	public $intCedula;
 	private $conexion;
 
-	public function __construct()
-	{
-		$this->conexion= new Db();
+	public function __construct($id = null) {
+		$this->conexion = new Db();
 		$this->conexion = $this->conexion->conexion();
-	}
-	public function insertCliente(int $cedula,string $nombre)
+		
+		if ($id !== null) {
+				$this->loadCliente($id);
+		}
+}
+	public function insertCliente(int $cedula, string $nombre)
 	{
 			try {
-				$this->strNombre = $nombre;
-				$this->intCedula = $cedula;
-	
-				$sql = "INSERT INTO clientes(cedula, nombre) VALUES(:cedula, :nombre)";
-				$insert = $this->conexion->prepare($sql);
-	
-				$arrData = [
-						":nombre" => $this->strNombre,
-						":cedula" => $this->intCedula
-				];
-	
-				$resInsert = $insert->execute($arrData);
-	
-				$insert->closeCursor();
-	
-				if ($resInsert) {
-						echo "Cliente insertado correctamente.";
-				} else {
-						echo "Error al insertar el cliente.";
-				}
-	
+					$this->intCedula = $cedula;
+					$this->strNombre = $nombre;
+
+					$sql = "INSERT INTO clientes(cedula, nombre) VALUES(:cedula, :nombre)";
+					$insert = $this->conexion->prepare($sql);
+
+					$arrData = [
+							":nombre" => $this->strNombre,
+							":cedula" => $this->intCedula
+					];
+
+					$resInsert = $insert->execute($arrData);
+
+					$insert->closeCursor();
+
+					$this->id = $this->conexion->lastInsertId(); 
+
+					return $this->id;
 			} catch (Exception $e) {
 					echo "Error: " . $e->getMessage();
 			}
 	}
-	public function getId() {
-		return $this->id;
+		public function getId() {
+			return $this->id;
+	}
+	public function loadCliente($id) {
+		$sql = "SELECT * FROM clientes WHERE id = :id";
+		$stmt = $this->conexion->prepare($sql);
+		$stmt->bindParam(":id", $id, PDO::PARAM_INT);
+		$stmt->execute();
+		$clienteData = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		if ($clienteData) {
+				$this->id = $clienteData['id'];
+				$this->strNombre = $clienteData['nombre'];
+				$this->intCedula = $clienteData['cedula'];
+		}
 	}
 
 	public function getClientes()
@@ -85,8 +98,14 @@ class Cliente extends Db{
 
 
 	public function deleteCliente(int $cedula)
-{
+	{
     try {
+				$clienteId = $this->getId();
+				$sql = "DELETE FROM autos WHERE idCliente = :idCliente";
+				$stmt = $this->conexion->prepare($sql);
+				$stmt->bindParam(":idCliente", $clienteId, PDO::PARAM_INT);
+				$stmt->execute();
+
         $this->intCedula = $cedula;
         $sql = "DELETE FROM clientes WHERE cedula = :cedula";
         $delete = $this->conexion->prepare($sql);
@@ -95,14 +114,13 @@ class Cliente extends Db{
             ":cedula" => $this->intCedula
         ];
 
-        // Ejecutar la consulta
         $del = $delete->execute($arrData);
 
         return $del;
     } catch (Throwable $e) {
         echo "Error: " . $e->getMessage();
     }
-}
+	}
 
 	
 
