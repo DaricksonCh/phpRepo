@@ -14,7 +14,7 @@ class Cliente extends Db{
 		if ($id !== null) {
 				$this->loadCliente($id);
 		}
-}
+	}
 	public function insertCliente(int $cedula, string $nombre)
 	{
 			try {
@@ -42,7 +42,7 @@ class Cliente extends Db{
 	}
 		public function getId() {
 			return $this->id;
-	}
+		}
 	public function loadCliente($id) {
 		$sql = "SELECT * FROM clientes WHERE id = :id";
 		$stmt = $this->conexion->prepare($sql);
@@ -121,8 +121,6 @@ class Cliente extends Db{
         echo "Error: " . $e->getMessage();
     }
 	}
-
-	
 
 
 

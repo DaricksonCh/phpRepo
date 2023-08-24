@@ -3,10 +3,12 @@
 require_once("conexion.php");
 require_once("Cliente.php");
 require_once("Vehiculo.php");
+require_once("Parqueadero.php");
 
 
 $conexion = new Db(); 
 $pdo = $conexion->conexion(); 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,21 +84,21 @@ $pdo = $conexion->conexion();
 		  <label for="color">Color del Vehículo</label>
 		  <input type="text" class="form-control" id="color" placeholder="Ingrese el color" name="color">
 		</div>
+		<div class="form-group">
+    <label for="piso">Piso</label>
+    <select class="form-control" id="piso" name="piso">
+        <option value="Piso1">Piso 1</option>
+        <option value="Piso2">Piso 2</option>
+        <option value="Piso3">Piso 3</option>
+        <option value="Piso4">Piso 4</option>
+    </select>
+</div>
 		<button type="submit" class="btn btn-primary" name="btn" onclick="Salida()">Registrar</button>
 	  </form>
 	</div>
   </div>
 </div>
-							<script type="text/javascript">
-                                function Salida() {
-                                    swal({
-                                        title: "Good job!",
-                                        text: "You clicked the button!",
-                                        icon: "success",
-                                        button: "Aww yiss!",
-                                        });
-                                }
-                            </script> 
+
 <?php
 if(isset($_POST['btn'])) {
 	$nombre = $_POST['nombre'];
@@ -104,12 +106,19 @@ if(isset($_POST['btn'])) {
 	$placa = $_POST['placa'];
 	$marca = $_POST['marca'];
 	$color = $_POST['color'];
+	$piso = $_POST['piso'];
+	$parqueadero = new Parqueadero();
+	$parqueadero->setAgregarPisoPuesto($piso);
 	$cliente = new Cliente();
 	$vehiculo = new Vehiculo();
 
 	$cliente->insertCliente($cedula, $nombre);
-	$vehiculo->insertAuto($cliente,$placa, $marca, $color);
+
+	if (!empty($placa) && !empty($marca) && !empty($color)) {
+		$vehiculo->insertAuto($cliente, $placa, $marca, $color);
+	}
 }
+
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

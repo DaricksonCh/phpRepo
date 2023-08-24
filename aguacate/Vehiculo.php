@@ -102,7 +102,7 @@ class Vehiculo extends Db{
             echo "Error: " . $e->getMessage();
         }
     }
-    
+
 
 }
 
