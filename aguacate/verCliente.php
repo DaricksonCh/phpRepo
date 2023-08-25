@@ -11,7 +11,6 @@
   $vehiculos = $tuObjetoVehiculo->getAutos(); 
   $tuObjetoVehiculo = new Vehiculo();
   $horaSalida = "2023-08-23 14:30:00"; 
-  $tuObjetoParqueadero = new Parqueadero($tuObjetoVehiculo, $horaSalida);
   
   ?>
   <!DOCTYPE html>
@@ -51,20 +50,29 @@
       .btn-editar:hover {
         background-color: #ff9800; 
       }
-
+      .nav-link:hover {
+        background-color: #007BFF; 
+        color: #fff; 
+        border-radius: 5px; 
+    }
     </style>
   </head>
   <body>
   <div class="container">
-      <nav class="navbar navbar-light bg-light">
-          <div class="container-fluid">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
-            <img src="aguacate.png" alt="" width="50" height="44" class="d-inline-block align-text-center">
-            Aguacate
+                <img src="aguacate.png" alt="" width="50" height="44" class="d-inline-block align-text-center">
+                Aguacate
             </a>
-          </div>
-      </nav>
-  </div>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
 
 
   <div class="container mt-5">
@@ -90,35 +98,35 @@
       for ($i = 0; $i < $totalRecords; $i++) {
         echo '<tr>';
         echo '<td>' . ($i + 1) . '</td>';
-        if ($i < count($clientes)) {
-          echo '<td>' . $clientes[$i]['nombre'] . '</td>';
-          echo '<td>' . $clientes[$i]['cedula'] . '</td>';
-          echo '<td>' . date("Y-m-d H:i:s") . '</td>';
+        if ($i < count($clientes) && isset($clientes[$i]['nombre']) && isset($clientes[$i]['cedula'])) {
+            echo '<td>' . $clientes[$i]['nombre'] . '</td>';
+            echo '<td>' . $clientes[$i]['cedula'] . '</td>';
+            echo '<td>' . date("Y-m-d H:i:s") . '</td>';
         } else {
-          echo '<td></td>';
-          echo '<td></td>';
-          echo '<td></td>';
+            echo '<td></td>';
+            echo '<td></td>';
+            echo '<td></td>';
         }
-      
-        if ($i < count($vehiculos)) {
-          echo '<td>' . $vehiculos[$i]['placa'] . '</td>';
-          echo '<td>' . $vehiculos[$i]['marca'] . '</td>';
-          echo '<td>' . $vehiculos[$i]['color'] . '</td>';
+        
+        if ($i < count($vehiculos) && isset($vehiculos[$i]['placa']) && isset($vehiculos[$i]['marca']) && isset($vehiculos[$i]['color'])) {
+            echo '<td>' . $vehiculos[$i]['placa'] . '</td>';
+            echo '<td>' . $vehiculos[$i]['marca'] . '</td>';
+            echo '<td>' . $vehiculos[$i]['color'] . '</td>';
         } else {
-          echo '<td></td>';
-          echo '<td></td>';
-          echo '<td></td>';
+            echo '<td></td>';
+            echo '<td></td>';
+            echo '<td></td>';
         }
-      
-        echo '<td class="text-center"><a class="btn-editar" href="editar.php?id=' . ($i + 1) . '"><i class="fas fa-edit"></i> Editar</a></td>';
+        
+        echo '<td class="text-center"><a class="btn-editar" href="editar.php?id=' . $clientes[$i]['id'] . '"><i class="fas fa-edit"></i> Editar Cliente</a></td>';
+        echo '<td class="text-center"><a class="btn-editar" href="editarV.php?id=' . $vehiculos[$i]['id'] . '"><i class="fas fa-edit"></i> Editar Vehiculo</a></td>';
         echo '</tr>';
-      }
-      
+    }    
       ?>
     </tbody>
   </table>
 </div>
-s
+
 
 
   <div class="container mt-5">

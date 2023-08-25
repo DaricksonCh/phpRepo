@@ -5,33 +5,33 @@ require_once("conexion.php");
 
 $db = new Db();
 $conexion = $db->conexion();
-$nombre = '';
-$cedula = '';
-
+$placa = '';
+$marca = '';
+$color = '';
 
 
 if (isset($_GET['id']) && is_numeric($_GET['id'])) {
     $id = $_GET['id'];
 
-    $sql = "SELECT nombre, cedula FROM clientes WHERE id = :id";
-    $consulta = $conexion->prepare($sql);
-    $consulta->bindParam(':id', $id, PDO::PARAM_INT);
-    $consulta->execute();
-    $cliente = $consulta->fetch(PDO::FETCH_ASSOC);
-    if ($cliente) {
-        $nombre = $cliente['nombre'];
-        $cedula = $cliente['cedula'];
-    } 
-} else {
-    echo "No se obtuvo nada";
-}
+        $sql = "SELECT placa, marca, color FROM autos WHERE id = :id";
+        $consulta = $conexion->prepare($sql);
+        $consulta->bindParam(':id', $id, PDO::PARAM_INT);
+        $consulta->execute();
+        $vehiculo = $consulta->fetch(PDO::FETCH_ASSOC);
+
+        if ($vehiculo) {
+            $placa = $vehiculo['placa'];
+            $marca = $vehiculo['marca'];
+            $color = $vehiculo['color'];
+        }
+    }
 if(isset($_POST['guardar'])) {
     try{
-        $nombre = $_POST['nombre'];
-        $cedula = $_POST['cedula'];
-
-        $cliente = new Cliente();
-        $cliente->updateCliente($cedula,$nombre);
+        $placa  = $_POST['placa'];
+        $marca  = $_POST['marca'];
+        $color  = $_POST['color'];
+        $vehiculo = new Vehiculo();
+        $vehiculo->updateVehiculo($placa, $marca, $color);
     }catch (Exception $e) {
         echo "Error: " . $e->getMessage();
     }   
@@ -73,19 +73,27 @@ if(isset($_POST['guardar'])) {
 
 
 <div class="container mt-5">
-    <h1 class="text-center display-4 mb-5">Editando cliente</h1>
+    <h1 class="text-center display-4 mb-5">Editando Vehiculo</h1>
     <form action="" method="POST">
         <div class="row">
             <div class="col-md-6">
                 <div class="mb-3">
-                    <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre"value="<?php echo $nombre; ?>">
+                    <label for="placa">Placa</label>
+                    <input type="text" class="form-control" id="placa" name="placa" placeholder="Ingrese la placa" value="<?php echo $placa ?>">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="mb-3">
-                    <label for="cedula">Cédula</label>
-                    <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Ingrese la cédula"value="<?php echo $cedula; ?>">
+                    <label for="marca">Marca</label>
+                    <input type="text" class="form-control" id="marca" name="marca" placeholder="Ingrese la marca" value="<?php echo $marca ?>">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label for="color">Color</label>
+                    <input type="text" class="form-control" id="color" name="color" placeholder="Ingrese el color" value="<?php echo $color ?>">
                 </div>
             </div>
         </div>

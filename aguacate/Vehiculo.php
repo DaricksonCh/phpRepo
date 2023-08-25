@@ -64,7 +64,7 @@ class Vehiculo extends Db{
             $this->strMarca = $marca;
             $this->strColor = $color;
     
-            $sql = "UPDATE vehiculos SET marca = :marca, color = :color WHERE placa = :placa";
+            $sql = "UPDATE autos SET marca = :marca, color = :color WHERE placa = :placa";
             $update = $this->conexion->prepare($sql);
     
             $arrData = [

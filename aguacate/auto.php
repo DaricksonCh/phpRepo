@@ -45,20 +45,29 @@ if (isset($_POST['guardar'])) {
 		.custom-input {
 			margin-bottom: 10px;
 		}
+		.nav-link:hover {
+        background-color: #007BFF; 
+        color: #fff; 
+        border-radius: 5px; 
+    }
 	</style>
 </head>
 <body>
 <div class="container">
-	<nav class="navbar navbar-light bg-light">
-		<div class="container-fluid">
-		  <a class="navbar-brand" href="index.php">
-		  <img src="aguacate.png" alt="" width="50" height="44" class="d-inline-block align-text-center">
-		  Aguacate
-		  </a>
-		</div>
-	</nav>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.php">
+                <img src="aguacate.png" alt="" width="50" height="44" class="d-inline-block align-text-center">
+                Aguacate
+            </a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </div>
-
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 offset-md-3 center-div">

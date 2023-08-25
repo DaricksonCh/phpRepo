@@ -37,16 +37,26 @@ if (isset($_POST['buscar'])) {
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     }
+    .nav-link:hover {
+        background-color: #007BFF; 
+        color: #fff; 
+        border-radius: 5px; 
+    }
   </style>
 </head>
 <body>
 <div class="container">
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.php">
-          <img src="aguacate.png" alt="" width="50" height="44" class="d-inline-block align-text-center">
-          Aguacate
-          </a>
+            <a class="navbar-brand" href="index.php">
+                <img src="aguacate.png" alt="" width="50" height="44" class="d-inline-block align-text-center">
+                Aguacate
+            </a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+            </ul>
         </div>
     </nav>
 </div>

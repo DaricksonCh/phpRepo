@@ -40,19 +40,33 @@ $pdo = $conexion->conexion();
 	.registration-form .btn {
 	  float: right;
 	}
+	.nav-link{
+		font-size: 1.8em;
+	}
+	.nav-link:hover {
+        background-color: #007BFF; 
+        color: #fff; 
+        border-radius: 5px; 
+    }
   </style>
 </head>
 <body>
 <div class="container">
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.php">
-          <img src="aguacate.png" alt="" width="50" height="44" class="d-inline-block align-text-center">
-          Aguacate
-          </a>
+            <a class="navbar-brand" href="index.php">
+                <img src="aguacate.png" alt="" width="50" height="44" class="d-inline-block align-text-center">
+                Aguacate
+            </a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.php">Home</a>
+                </li>
+            </ul>
         </div>
     </nav>
 </div>
+
 
 <div class="container mt-5">
   <h1 class="text-center">Registrar Cliente</h1>
@@ -93,11 +107,13 @@ $pdo = $conexion->conexion();
         <option value="Piso4">Piso 4</option>
     </select>
 </div>
-		<button type="submit" class="btn btn-primary" name="btn" onclick="Salida()">Registrar</button>
+		<button type="submit" class="btn btn-primary" name="btn">Registrar</button>
 	  </form>
 	</div>
   </div>
 </div>
+
+
 
 <?php
 if(isset($_POST['btn'])) {
@@ -120,6 +136,7 @@ if(isset($_POST['btn'])) {
 }
 
 ?>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
