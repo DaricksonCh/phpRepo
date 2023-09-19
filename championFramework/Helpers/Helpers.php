@@ -56,9 +56,11 @@
 
     function jsonResponse(array $arrDate, int $code)
     {
-        header("HTTP/1.1 $code");
-        header("Content-Type: application/json");
-        echo json_encode($arrDate);
+        if(is_array($arrDate)){
+            header("HTTP/1.1 $code");
+            header("Content-Type: application/json");
+            echo json_encode($arrDate,true);
+        }
     }
 
     function testString(string $data)

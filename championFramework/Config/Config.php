@@ -1,7 +1,8 @@
 <?php
 
     //define("BASE_URL","http://localhost/champion-framework/");
-    const BASE_URL = "http://localhost/darickson/phpRepo/championFramework/";
+    // const BASE_URL = "http://localhost/darickson/phpRepo/championFramework/";
+    const BASE_URL = "http://localhost/phpRepo/championFramework/";
 
     //Datos de conexión a Base de Datos
 	const CONNECTION = TRUE;
