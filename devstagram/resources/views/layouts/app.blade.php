@@ -20,7 +20,7 @@
     <div class="text-right">
         <a href="/login">Inicia Sesion</a>
 				|
-        <a href="/register">Registrate</a>
+        <a href="{{route('register')}}">Registrate</a>
     </div>
 	</nav>
 
