@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
+
 @section('title')
-	Hola en regusrer
+	Hola en Register
 @endsection
 
 
@@ -15,21 +16,21 @@
 			@csrf
 			<div class="mb-5">
 				<label for="" class="mb-2 block uppercase text-gray-500 font-bold">Nombre</label>
-				<input type="text" name="name" id="name" placeholder="Nombre" class="border p-5 w-full rounded-lg">
+				<input type="text" name="name" id="name" placeholder="Nombre" class="border p-5 w-full rounded-lg @error('name') border-y-rose-500 @enderror">
 				@error('name')
 					<p class="bg-red-500 text-white p-2 rounded-lg my-2 text-center">{{$message}}</p>
 				@enderror
 			</div>
 			<div class="mb-5">
 				<label for="" class="mb-2 block uppercase text-gray-500 font-bold">UserName</label>
-				<input type="text" name="username" id="username" placeholder="UserName" class="border p-5 w-full rounded-lg">
+				<input type="text" name="username" id="username" placeholder="UserName" class="border p-5 w-full rounded-lg @error('username') border-y-rose-500 @enderror"">
 				@error('username')
 				<p class="bg-red-500 text-white p-2 rounded-lg my-2 text-center">{{$message}}</p>
 				@enderror
 			</div>
 			<div class="mb-5">
 				<label for="" class="mb-2 block uppercase text-gray-500 font-bold">Email</label>
-				<input type="text" name="email" id="email" placeholder="Correo" class="border p-5 w-full rounded-lg">
+				<input type="text" name="email" id="email" placeholder="Correo" class="border p-5 w-full rounded-lg @error('email') border-y-rose-500 @enderror"">
 				@error('email')
 				<p class="bg-red-500 text-white p-2 rounded-lg my-2 text-center">{{$message}}</p>
 			@enderror
