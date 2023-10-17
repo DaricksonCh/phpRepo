@@ -16,32 +16,32 @@
 			@csrf
 			<div class="mb-5">
 				<label for="" class="mb-2 block uppercase text-gray-500 font-bold">Nombre</label>
-				<input type="text" name="name" id="name" placeholder="Nombre" class="border p-5 w-full rounded-lg @error('name') border-y-rose-500 @enderror">
+				<input type="text" name="name" id="name" placeholder="Nombre" class="border p-5 w-full rounded-lg @error('name') border-rose-600 @enderror" value="{{ old('name') }}">
 				@error('name')
 					<p class="bg-red-500 text-white p-2 rounded-lg my-2 text-center">{{$message}}</p>
 				@enderror
 			</div>
 			<div class="mb-5">
 				<label for="" class="mb-2 block uppercase text-gray-500 font-bold">UserName</label>
-				<input type="text" name="username" id="username" placeholder="UserName" class="border p-5 w-full rounded-lg @error('username') border-y-rose-500 @enderror"">
+				<input type="text" name="username" id="username" placeholder="UserName" class="border p-5 w-full rounded-lg @error('username') border-rose-600 @enderror" value="{{ old('username') }}">
 				@error('username')
 				<p class="bg-red-500 text-white p-2 rounded-lg my-2 text-center">{{$message}}</p>
 				@enderror
 			</div>
 			<div class="mb-5">
 				<label for="" class="mb-2 block uppercase text-gray-500 font-bold">Email</label>
-				<input type="text" name="email" id="email" placeholder="Correo" class="border p-5 w-full rounded-lg @error('email') border-y-rose-500 @enderror"">
+				<input type="text" name="email" id="email" placeholder="Correo" class="border p-5 w-full rounded-lg @error('email') border-rose-600 @enderror" value="{{ old('email') }}">
 				@error('email')
 				<p class="bg-red-500 text-white p-2 rounded-lg my-2 text-center">{{$message}}</p>
 			@enderror
 			</div>
 			<div class="mb-5">
 				<label for="" class="mb-2 block uppercase text-gray-500 font-bold">Contraseña</label>
-				<input type="text" name="password" id="password" placeholder="Contraseña" class="border p-5 w-full rounded-lg">
+				<input type="text" name="password" id="password" placeholder="Contraseña" class="border p-5 w-full rounded-lg @error('password') border-rose-600 @enderror">
 			</div>
 			<div class="mb-5">
 				<label for="password_confirmation" class="mb-2 block uppercase text-gray-500 font-bold">Repetir Contraseña</label>
-				<input type="text" name="password_confirmation" id="password_confirmation" placeholder="Contraseña" class="border p-5 w-full rounded-lg">
+				<input type="text" name="password_confirmation" id="password_confirmation" placeholder="Contraseña" class="border p-5 w-full rounded-lg @error('password') border-rose-600 @enderror">
 			</div>
 			<input type="submit" value="Crear Cuenta" class="bg-sky-500 hover:bg-sky-600 transition-color cursor-pointer uppercase font-bold w-full p-5 text-white rounded">
 		</form>

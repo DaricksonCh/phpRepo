@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Register;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Models\User;
+
 
 class RegisterController extends Controller
 {
@@ -27,13 +30,21 @@ class RegisterController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
+        $request->request->add(['username'=>Str::slug($request->username)]);
         $this->validate($request,[
             'name'=>'required|min:3|max:50',
-            'username'=>'required|min:3|max:50|unique',
-            'email'=>'required|min:3|max:50|unique'
+            'username'=>'required|min:3|max:50|unique:users',
+            'email'=>'required|min:3|max:50|unique:users|email',
+            'password'=>'required|confirmed|min:5'
         ]);
-        
+        User::create([
+            'name'=>$request->name,
+            'username'=>Str::slug($request->username),
+            'email'=>$request->email,
+            'password'=>$request->password
+        ]);
+        return redirect()->route('post.index');
     }
 
     /**
