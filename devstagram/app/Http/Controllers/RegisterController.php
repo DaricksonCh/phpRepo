@@ -13,8 +13,9 @@ class RegisterController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        auth()->attempt($request->only('email','password'));
         return view('auth.register');
     }
 
