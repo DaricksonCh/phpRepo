@@ -11,7 +11,20 @@
         <img src="{{ asset('img/usuario.svg') }}" alt="Hola">
     </div>
     <div class="md:w-8/12 lg:w-6/12 px-5">
-      <p>{{auth()->user()->username}}</p>
+      {{-- {{dd($user)}} --}}
+      <p>{{$user->username}}</p>
+      <p class="text-gray-800 text-sm mb-3 font-bold">
+        o
+        <span class="font-normal mt-10">Seguidores</span>
+      </p>
+      <p class="text-gray-800 text-sm mb-3 font-bold">
+        o
+        <span class="font-normal mt-10">Siguiendo</span>
+      </p>
+      <p class="text-gray-800 text-sm mb-3 font-bold">
+        o
+        <span class="font-normal mt-10">Post</span>
+      </p>
     </div>
   </div>
 @endsection
