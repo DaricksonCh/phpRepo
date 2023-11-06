@@ -19,7 +19,7 @@
 						</svg>
 						
 						Crear</a>
-					<a href="#" class="font-bold uppercase text-gray-600">
+					<a href="{{route('post.index'), auth()->user()->username}}" class="font-bold uppercase text-gray-600">
 						Hola <span class="font-bold">{{auth()->user()->username}}</span>
 					</a>
 					<form action="{{route('logout')}}" method="post">
