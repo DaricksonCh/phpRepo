@@ -62,7 +62,6 @@ class SuggestPrompt extends Prompt
             default => (function () {
                 $this->highlighted = null;
                 $this->matches = null;
-                $this->firstVisible = 0;
             })(),
         });
 
