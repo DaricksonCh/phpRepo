@@ -17,7 +17,15 @@ use App\Http\Controllers\UsuarioController;
 Route::get('/', function () {
     return view('principal');
 });
+Route::get('/home', function () {
+    return view('principal');
+})->name('home');
 
 Route::get('/user', [UsuarioController::class, 'index'])->name('index');
-Route::post('/user', [UsuarioController::class, 'store']);
+// Route::get('/user', [UsuarioController::class, 'index'])->name('index');
+// Route::post('/user', [UsuarioController::class, 'store']);
 
+// Route::resource('user', UsuarioController::class);
+
+
+// Route::delete('/user/id', [UsuarioController::class, 'destroy'])->name('destroy');

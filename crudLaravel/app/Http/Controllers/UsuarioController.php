@@ -12,7 +12,8 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $usuarios = Usuario::all();
+        return view('principal', compact('usuarios'));
     }
 
     /**
@@ -35,7 +36,7 @@ class UsuarioController extends Controller
             'direccion'=>'required|max:30'
         ]);
         Usuario::create($request->all());
-        return redirect()->route('index');
+        return redirect()->route('home');
     }
 
     /**
@@ -43,7 +44,7 @@ class UsuarioController extends Controller
      */
     public function show(Usuario $usuario)
     {
-        //
+
     }
 
     /**
@@ -65,8 +66,9 @@ class UsuarioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Usuario $usuario)
+    public function destroy($id)
     {
-        //
+        // Usuario::where('id', $id)->delete();
+        // return view('principal');
     }
 }
