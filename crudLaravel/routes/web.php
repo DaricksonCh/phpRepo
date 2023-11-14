@@ -22,10 +22,9 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::get('/user', [UsuarioController::class, 'index'])->name('index');
-// Route::get('/user', [UsuarioController::class, 'index'])->name('index');
-// Route::post('/user', [UsuarioController::class, 'store']);
-
-// Route::resource('user', UsuarioController::class);
 
 
-// Route::delete('/user/id', [UsuarioController::class, 'destroy'])->name('destroy');
+
+
+
+

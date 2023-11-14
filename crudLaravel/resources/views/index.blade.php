@@ -10,7 +10,7 @@
             <img src="{{ asset('img/registrar.jpg') }}" alt="Imagen registro de usuarios">
         </div>
         <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
-            <form action="{{route('index')}}" method="POST">
+            <form method="post" action="{{ route('usuarios.store') }}">
                 @csrf
                 <div class="mb-5">
                     <label for="nombre" class="mb-2 block uppercase text-gray-500 font-bold" >Nombre</label>

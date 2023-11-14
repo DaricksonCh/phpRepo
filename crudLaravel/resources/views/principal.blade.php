@@ -27,12 +27,6 @@
                 <th class="py-2 px-4 border-b">{{ $usuario->telefono }}</th>
                 <th class="py-2 px-4 border-b">{{ $usuario->direccion }}</th>
                 <th class="py-2 px-4 border-b">
-                    <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-sm btn-primary">Editar</a>
-                    <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display: inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-                    </form>
                 </th>
             </tr>
             @endforeach
