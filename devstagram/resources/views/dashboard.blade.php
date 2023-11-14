@@ -25,6 +25,7 @@
                     0
                     <span class="font-normal"> Post</span>
                 </p>
+                <a href="/user" class="bg-blue-500 text-white px-4 py-2 rounded-md mt-4 hover:bg-blue-600">Listar Usuarios</a>
             </div>
         </div>
     </div>
