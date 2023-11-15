@@ -15,16 +15,14 @@ use App\Http\Controllers\UsuarioController;
 */
 
 Route::get('/', function () {
-    return view('principal');
+    return view('index');
 });
-Route::get('/home', function () {
-    return view('principal');
-})->name('home');
 
-Route::get('/user', [UsuarioController::class, 'index'])->name('index');
-
-
-
-
+Route::get('user', [UsuarioController::class, 'index'])->name('users.index');
+Route::get('/user/create', [UsuarioController::class, 'create'])->name('users.create');
+Route::post('user',[UsuarioController::class,'store'])->name('users.store');
+Route::get('user/{user}/edit',[UsuarioController::class,'edit'])->name('users.edit');
+Route::put('user/{user}',[UsuarioController::class,'update'])->name('users.update');
+Route::delete('user/{user}',[UsuarioController::class,'destroy'])->name('users.destroy');
 
 

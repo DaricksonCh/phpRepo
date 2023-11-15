@@ -1,47 +1,42 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Registrate en CrudLaravel
+    Pagina principal
 @endsection
 
 @section('contenido')
-    <div class="md:flex md:justify-center md:gap-10 md:items-center">
-        <div class="md:w-6/12 p-5">
-            <img src="{{ asset('img/registrar.jpg') }}" alt="Imagen registro de usuarios">
-        </div>
-        <div class="md:w-4/12 bg-white p-6 rounded-lg shadow-xl">
-            <form method="post" action="{{ route('usuarios.store') }}">
-                @csrf
-                <div class="mb-5">
-                    <label for="nombre" class="mb-2 block uppercase text-gray-500 font-bold" >Nombre</label>
-                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" class="border p-3 w-full rounded-lg @error('nombre') border-red-500 @enderror " value="{{ old('nombre') }}">
-                    @error('nombre')
-                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-5">
-                    <label for="cedula" class="mb-2 block uppercase text-gray-500 font-bold" >Cedula</label>
-                    <input type="text" id="cedula" name="cedula" placeholder="cedula" class="border p-3 w-full rounded-lg" value="{{ old('cedula') }}">
-                    @error('cedula')
-                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-5">
-                    <label for="telefono" class="mb-2 block uppercase text-gray-500 font-bold" >Telefono</label>
-                    <input type="text" id="telefono" name="telefono" placeholder="Telefono" class="border p-3 w-full rounded-lg"  value="{{ old('telefono') }}">
-                    @error('telefono')
-                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-5">
-                    <label for="direccion" class="mb-2 block uppercase text-gray-500 font-bold">direccion</label>
-                    <input type="text" id="direccion" name="direccion" placeholder="direccion" class="border p-3 w-full rounded-lg"  value="{{ old('direccion') }}">
-                    @error('direccion')
-                        <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
-                    @enderror
-                </div>
-                <input type="submit" value="Crear cuenta" class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg">
-            </form>
-        </div>
-    </div>
+<div class="container mx-auto mt-8">
+    <h2 class="text-2xl font-semibold mb-4">Lista de Usuarios</h2>
+    <table class="min-w-full bg-white border border-gray-300">
+        <thead>
+            <tr>
+                <th class="py-2 px-4 border-b">N</th>
+                <th class="py-2 px-4 border-b">Nombre</th>
+                <th class="py-2 px-4 border-b">Cedula</th>
+                <th class="py-2 px-4 border-b">Teléfono</th>
+                <th class="py-2 px-4 border-b">Dirección</th>
+                <th class="py-2 px-4 border-b">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($usuarios as $usuario)
+            <tr>
+                <th class="py-2 px-4 border-b">{{ $loop->index + 1 }}</th>
+                <th class="py-2 px-4 border-b">{{ $usuario->nombre }}</th>
+                <th class="py-2 px-4 border-b">{{ $usuario->cedula }}</th>
+                <th class="py-2 px-4 border-b">{{ $usuario->telefono }}</th>
+                <th class="py-2 px-4 border-b">{{ $usuario->direccion }}</th>
+                <th class="py-2 px-4 border-b flex justify-center gap-1">
+                    <a href="{{ route('users.edit',$usuario->id) }}" class="bg-blue-400 p-4 rounded hover:bg-blue-300">Editar</a>
+                    <form action="{{ route('users.destroy', $usuario->id) }}" method="POST" class="bg-rose-400 p-3 rounded hover:bg-rose-300">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </th>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 @endsection

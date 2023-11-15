@@ -13,7 +13,7 @@ class UsuarioController extends Controller
     public function index()
     {
         $usuarios = Usuario::all();
-        return view('principal', compact('usuarios'));
+        return view('index', compact('usuarios'));
     }
 
     /**
@@ -21,7 +21,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -36,7 +36,7 @@ class UsuarioController extends Controller
             'direccion'=>'required|max:30'
         ]);
         Usuario::create($request->all());
-        return redirect()->route('home');
+        return redirect()->route('users.index');
     }
 
     /**
@@ -44,23 +44,33 @@ class UsuarioController extends Controller
      */
     public function show(Usuario $usuario)
     {
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Usuario $usuario)
+    public function edit($id)
     {
-        //
+        $usuario = Usuario::findOrFail($id);
+        return view('edit', compact('usuario'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request,$id)
     {
-        //
+        $usuario = Usuario::find($id);
+        $this->validate($request,[
+            'nombre'=>'required|max:30',
+            'cedula'=>'required|max:30',
+            'telefono'=>'required|max:30',
+            'direccion'=>'required|max:30'
+        ]);
+
+        $usuario->update($request->all());
+        return redirect()->route('users.index');
     }
 
     /**
@@ -68,7 +78,7 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
-        // Usuario::where('id', $id)->delete();
-        // return view('principal');
+        Usuario::where('id', $id)->delete();
+        return redirect()->route('users.index');
     }
 }
