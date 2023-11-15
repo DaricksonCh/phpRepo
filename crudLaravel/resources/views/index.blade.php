@@ -7,6 +7,7 @@
 @section('contenido')
 <div class="container mx-auto mt-8">
     <h2 class="text-2xl font-semibold mb-4">Lista de Usuarios</h2>
+    <a href="{{route('export_user_pdf')}}" class="underline text-lg hover:text-rose-600">Exportar Usuarios</a>
     <table class="min-w-full bg-white border border-gray-300">
         <thead>
             <tr>

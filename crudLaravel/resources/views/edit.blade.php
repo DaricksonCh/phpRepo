@@ -41,7 +41,11 @@
                         <p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
                     @enderror
                 </div>
-                <input type="submit" value="Crear cuenta" class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg">
+                <div class="space-x-16">
+                    <input type="submit" value="Actualizar Cuenta" class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold p-3 text-white rounded-lg">
+                    <a href="{{route('export_user',$usuario->id)}}" class="rounded text-xl hover:bg-rose-800 bg-rose-600 p-3 text-white font-bold">Exportar Usuarios</a>
+                </div>
+
             </form>
         </div>
     </div>

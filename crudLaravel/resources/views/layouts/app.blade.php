@@ -11,6 +11,9 @@
     <h1 class="text-3xl font-black">
         CrudLaravel
     </h1>
+    <nav class="flex gap-2 items-center">
+        <a class="font-bold uppercase text-gray-600" href="{{route('users.index')}}">Inicio</a>
+    </nav>
         <nav class="flex gap-2 items-center">
             <a class="font-bold uppercase text-gray-600" href="{{route('users.create')}}">Crear Usuario</a>
         </nav>

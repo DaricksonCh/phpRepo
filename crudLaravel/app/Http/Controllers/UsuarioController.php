@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class UsuarioController extends Controller
 {
     /**
@@ -81,4 +81,19 @@ class UsuarioController extends Controller
         Usuario::where('id', $id)->delete();
         return redirect()->route('users.index');
     }
+
+    public function export_user_pdf()
+    {
+        $usuarios = Usuario::all();
+        $pdf = PDF::loadView('pdf', ['usuarios' => $usuarios]);
+        return $pdf->stream('pdf.pdf');
+    }
+
+    public function export_user($id)
+    {
+        $usuario = Usuario::find($id);
+        $pdf = PDF::loadView('pdfu', ['usuario' => $usuario]);
+        return $pdf->stream('pdf.pdf');
+    }
+    
 }
