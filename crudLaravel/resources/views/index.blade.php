@@ -29,7 +29,7 @@
                 <th class="py-2 px-4 border-b">{{ $usuario->direccion }}</th>
                 <th class="py-2 px-4 border-b flex justify-center gap-1">
                     <a href="{{ route('users.edit',$usuario->id) }}" class="bg-blue-400 p-4 rounded hover:bg-blue-300">Editar</a>
-                    <form action="{{ route('users.destroy', $usuario->id) }}" method="POST" class="bg-rose-400 p-3 rounded hover:bg-rose-300">
+                    <form action="{{ route('users.destroy', $usuario->id) }}" method="POST" class="bg-rose-400 p-3 rounded hover:bg-rose-300" id="delete">
                         @csrf
                         @method('DELETE')
                         <button type="submit">Eliminar</button>

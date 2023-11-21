@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use RealRashid\SweetAlert\Facade\Alert;
 class UsuarioController extends Controller
 {
     /**
@@ -29,12 +30,14 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'nombre'=>'required|max:30',
-            'cedula'=>'required|max:30',
-            'telefono'=>'required|max:30',
-            'direccion'=>'required|max:30'
+        $this->validate($request, [
+            'nombre' => 'required|string|max:30',
+            'cedula' => 'required|alpha_num|max:30',
+            'telefono' => 'required|regex:/^[0-9+\-]+$/|max:15',
+            'direccion' => 'required|string|max:255',
         ]);
+        // Alert::success('Registrado Exitosamente','Bienvenido a la Plataforma');
+
         Usuario::create($request->all());
         return redirect()->route('users.index');
     }
@@ -62,13 +65,12 @@ class UsuarioController extends Controller
     public function update(Request $request,$id)
     {
         $usuario = Usuario::find($id);
-        $this->validate($request,[
-            'nombre'=>'required|max:30',
-            'cedula'=>'required|max:30',
-            'telefono'=>'required|max:30',
-            'direccion'=>'required|max:30'
+        $this->validate($request, [
+            'nombre' => 'required|string|max:30',
+            'cedula' => 'required|numeric|max:30',
+            'telefono' => 'required|regex:/^[0-9+\-]+$/|max:30',
+            'direccion' => 'required|string|max:255',
         ]);
-
         $usuario->update($request->all());
         return redirect()->route('users.index');
     }

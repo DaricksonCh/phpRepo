@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    @vite('resources/js/sweetalert.js')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="bg-gray-100">
 <header class="p-5 border-b bg-white shadow flex justify-between items-center">
@@ -28,5 +30,9 @@
 <footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">
     CrudLaravel - Todos los derechos reservados {{ now() }}
 </footer>
+
+
+@include('sweetalert::alert')
+
 </body>
 </html>

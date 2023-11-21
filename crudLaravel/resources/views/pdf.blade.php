@@ -85,7 +85,6 @@
       <th class="py-2 px-4">Cedula</th>
       <th class="py-2 px-4">Teléfono</th>
       <th class="py-2 px-4">Dirección</th>
-      <th class="py-2 px-4">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -96,14 +95,6 @@
         <td class="py-2 px-4">{{ $usuario->cedula }}</td>
         <td class="py-2 px-4">{{ $usuario->telefono }}</td>
         <td class="py-2 px-4">{{ $usuario->direccion }}</td>
-        <td class="py-2 px-4 actions">
-          <a href="{{ route('users.edit',$usuario->id) }}" class="edit-btn">Editar</a>
-          <form action="{{ route('users.destroy', $usuario->id) }}" method="POST" class="delete-form">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="delete-btn">Eliminar</button>
-          </form>
-        </td>
       </tr>
     @endforeach
   </tbody>
