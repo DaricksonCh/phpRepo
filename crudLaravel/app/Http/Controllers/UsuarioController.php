@@ -32,7 +32,7 @@ class UsuarioController extends Controller
     {
         $this->validate($request, [
             'nombre' => 'required|string|max:30',
-            'cedula' => 'required|alpha_num|max:30',
+            // 'cedula' => 'required|alpha_num|max:30',
             'telefono' => 'required|regex:/^[0-9+\-]+$/|max:15',
             'direccion' => 'required|string|max:255',
         ]);
@@ -67,7 +67,7 @@ class UsuarioController extends Controller
         $usuario = Usuario::find($id);
         $this->validate($request, [
             'nombre' => 'required|string|max:30',
-            'cedula' => 'required|numeric|max:30',
+            // 'cedula' => 'required|numeric|max:30',
             'telefono' => 'required|regex:/^[0-9+\-]+$/|max:30',
             'direccion' => 'required|string|max:255',
         ]);
