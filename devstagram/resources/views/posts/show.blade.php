@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('titulo')
-    Pagina
+    {{$post->titulo}}
 @endsection
 
 @section('contenido')
-    Este es el
+  
 @endsection
